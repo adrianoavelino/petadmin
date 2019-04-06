@@ -4,6 +4,12 @@ class Sell < ApplicationRecord
 
   validates :client, presence: true
   
+  has_many :sell_products
+  has_many :products, through: :sell_products
+
+  has_many :sell_services
+  has_many :services, through: :sell_services
+
   def fae_display_field
     id
   end

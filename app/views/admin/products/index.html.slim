@@ -16,7 +16,7 @@ main.content
           tr id=fae_sort_id(item)
             td = link_to item.fae_display_field, edit_admin_product_path(item)
             td = item.price
-            td = (item.Supplier)? item.supplier.name : ''
+            td = (item.supplier)? item.supplier.name : ''
             td = fae_date_format item.updated_at
             td = fae_delete_button item
       - else
