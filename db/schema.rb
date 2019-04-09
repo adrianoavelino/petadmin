@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190406171233) do
+ActiveRecord::Schema.define(version: 20190408014840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "street"
+    t.string   "number"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.string   "state"
+    t.string   "cep"
+    t.integer  "client_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["client_id"], name: "index_addresses_on_client_id", using: :btree
+  end
 
   create_table "campaign_clients", force: :cascade do |t|
     t.integer  "campaign_id"
@@ -29,6 +43,15 @@ ActiveRecord::Schema.define(version: 20190406171233) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "client_addresses", force: :cascade do |t|
+    t.integer  "client_id"
+    t.integer  "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_client_addresses_on_address_id", using: :btree
+    t.index ["client_id"], name: "index_client_addresses_on_client_id", using: :btree
   end
 
   create_table "clients", force: :cascade do |t|
@@ -255,8 +278,11 @@ ActiveRecord::Schema.define(version: 20190406171233) do
     t.datetime "updated_at",   null: false
   end
 
+  add_foreign_key "addresses", "clients"
   add_foreign_key "campaign_clients", "campaigns"
   add_foreign_key "campaign_clients", "clients"
+  add_foreign_key "client_addresses", "addresses"
+  add_foreign_key "client_addresses", "clients"
   add_foreign_key "products", "suppliers"
   add_foreign_key "sell_products", "products"
   add_foreign_key "sell_products", "sells"
