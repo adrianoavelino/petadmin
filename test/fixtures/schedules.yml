@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2019-04-10
+  time: 2019-04-10 01:23:41
+  service: one
+  client: one
+
+two:
+  date: 2019-04-10
+  time: 2019-04-10 01:23:41
+  service: two
+  client: two
