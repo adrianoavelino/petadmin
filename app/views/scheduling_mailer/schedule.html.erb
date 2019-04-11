@@ -1,0 +1,8 @@
+<h1>Agendamento PET Admin</h1>
+<h2>Informações:</h2>
+<ul>
+  <li>Cliente: <%= @schedule.client.name %></li>
+  <li>Serviço: <%= @schedule.service.title %></li>
+  <li>Data: <%= @schedule.date.strftime("%d/%m/%Y") %></li>
+  <li>Horário: <%= @schedule.time.to_formatted_s(:time) %></li>
+</ul>

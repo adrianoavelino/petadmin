@@ -1,0 +1,7 @@
+Agendamento PET Admin
+Informações:
+
+Cliente: <%= @schedule.client.name %>
+Serviço: <%= @schedule.service.title %>
+Data: <%= @schedule.date.strftime("%d/%m/%Y") %>
+Horário: <%= @schedule.time.to_formatted_s(:time) %>
