@@ -3,4 +3,5 @@
 
   main.content
     = fae_input f, :title
+    = fae_pulldown f, :discount_type, collection: {money: 0, percent: 1}
     = fae_prefix f, :value, prefix: '$', placeholder: '50.00'

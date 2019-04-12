@@ -29,12 +29,25 @@ class Sell < ApplicationRecord
     total = 0
     self.products.each {|p| total += p.price }
     self.services.each {|s| total += s.price }
-
-    if self.discount.present?
-      total = total - self.discount.value
-    end
-
+    total = get_total_with_discount(total) if self.discount.present?
     total = (total >= 0)? total : 0
     self.total = total
+  end
+
+  def get_total_with_discount(total)
+    return total_with_discount_in_money(total) if is_discount_with_money?
+    return total_with_discount_in_percentagem(total)
+  end
+
+  def is_discount_with_money?
+    self.discount.discount_type == 0
+  end
+
+  def total_with_discount_in_money(total)
+    total - self.discount.value
+  end
+
+  def total_with_discount_in_percentagem(total)
+    total * (1 - (self.discount.value/100))
   end
 end

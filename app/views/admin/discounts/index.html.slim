@@ -5,6 +5,8 @@ main.content
     thead
       tr
         th Title
+        th Type
+        th Value
         th.-action-wide Modified
         th.-action data-sorter="false"
 
@@ -13,6 +15,8 @@ main.content
         - @items.each do |item|
           tr id=fae_sort_id(item)
             td = link_to item.fae_display_field, edit_admin_discount_path(item)
+            td = ['money','percentual'][item.discount_type]
+            td = item.value
             td = fae_date_format item.updated_at
             td = fae_delete_button item
       - else

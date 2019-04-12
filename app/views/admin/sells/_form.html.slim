@@ -11,4 +11,4 @@
     = fae_datepicker f,  :date
 
     = fae_input f, :observations
-    = fae_pulldown f, :status, size: 'long', collection: Sell.statuses.to_a, selected: Sell.statuses[@item.status]
+    = fae_pulldown f, :status, size: 'long', collection: { finished: 0, canceled: 1 }, selected: 0
